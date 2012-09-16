@@ -14,3 +14,14 @@ class MethodRewrite:
             if len(methods) == 1 and methods[0] in self.allowed:
                 environ['REQUEST_METHOD'] = methods[0]
         return self.app(environ, start_response)
+
+class SchemeRewrite:
+
+    def __init__(self, app):
+        self.app = app
+
+    def __call__(self, environ, start_response):
+        scheme = environ.get('HTTP_X_SCHEME', '')
+        if scheme:
+            environ['wsgi.url_scheme'] = scheme
+        return self.app(environ, start_response)

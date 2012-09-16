@@ -1,10 +1,10 @@
 #!/usr/bin/env python
 from domains import app
-from middleware import MethodRewrite
+from middleware import MethodRewrite, SchemeRewrite
 from bottle import run
 import sys
 
-app = MethodRewrite(app)
+app = SchemeRewrite(MethodRewrite(app))
 
 def main():
     port = sys.argv[1]
