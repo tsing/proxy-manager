@@ -8,7 +8,7 @@ app = SchemeRewrite(MethodRewrite(app))
 
 def main():
     port = sys.argv[1]
-    run(server="gevent", port=port)
+    run(server="gevent", port=port, app=app)
 
 if __name__ == '__main__':
     main()
