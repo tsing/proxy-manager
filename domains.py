@@ -5,7 +5,6 @@ from bottle import default_app, route, post, delete, run, request, debug, url, r
 from auth import require_auth
 from store import Store
 from flash import FlashPlugin
-from werkzeug.debug import DebuggedApplication
 from middleware import MethodRewrite
 from fanout import Fanout
 
@@ -66,6 +65,8 @@ def delete_domain(domain):
     return redirect(url('domains'))
 
 def main():
+    from werkzeug.debug import DebuggedApplication
+
     app.catchall = False
     wrapped = MethodRewrite(app)
     wrapped = DebuggedApplication(wrapped, evalex=True)
