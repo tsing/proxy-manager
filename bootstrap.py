@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 from domains import app
 from middleware import MethodRewrite
 from bottle import run
