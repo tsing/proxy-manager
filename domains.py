@@ -1,7 +1,8 @@
 import gevent.monkey; gevent.monkey.patch_all()
 import gevent.queue
+import os
 
-from bottle import default_app, route, post, delete, run, request, debug, url, redirect, template
+from bottle import default_app, route, post, delete, run, request, debug, url, redirect, template, static_file
 from auth import require_auth
 from store import Store
 from flash import FlashPlugin
@@ -63,6 +64,10 @@ def delete_domain(domain):
     flash("%s deleted" % domain)
     fanout.update()
     return redirect(url('domains'))
+
+@route('/static/<path:path>')
+def static(path):
+    return static_file(path, os.path.join(os.path.dirname(__file__), "static"))
 
 def main():
     from werkzeug.debug import DebuggedApplication
