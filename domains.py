@@ -12,7 +12,7 @@ from fanout import Fanout
 COOKIE_SECRET = "goodgoodstudy"
 
 app = default_app()
-app.install(FlashPlugin(COOKIE_SECRET))
+app.install(FlashPlugin(secret=COOKIE_SECRET))
 flash = app.flash
 get_flashed_messages = app.get_flashed_messages
 url = app.get_url
