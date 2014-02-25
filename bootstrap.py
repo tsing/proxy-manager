@@ -7,8 +7,9 @@ import sys
 app = SchemeRewrite(MethodRewrite(app))
 
 def main():
-    port = sys.argv[1]
-    run(server="gevent", port=port, app=app)
+    host = sys.argv[1]
+    port = sys.argv[2]
+    run(server="gevent", host=host, port=port, app=app)
 
 if __name__ == '__main__':
     main()
